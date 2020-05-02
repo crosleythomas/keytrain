@@ -1,0 +1,8 @@
+add all locally modified files to a remote branch?
+git add .
+git commit -m "message"
+git push
+
+push an empty commit
+git commit --allow-empty -m "message"
+
