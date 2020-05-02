@@ -73,4 +73,6 @@ jobs:
           echo VERSION=$VERSION
 
           docker tag image $IMAGE_ID:$VERSION
+          echo Tagged $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+          echo Pushed $IMAGE_ID:$VERSION
