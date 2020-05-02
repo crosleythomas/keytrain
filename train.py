@@ -24,6 +24,7 @@ def read_packs(packs):
         samples.extend(read_pack(pack))
     return samples
 
+
 def train_sample(sample):
     print(sample[0])
     for solution in sample[1]:
