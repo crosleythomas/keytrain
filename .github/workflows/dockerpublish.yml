@@ -1,4 +1,4 @@
-name: Docker
+name: Test, Build, Publish
 
 on:
   push:
@@ -14,7 +14,6 @@ on:
   pull_request:
 
 env:
-  # TODO: Change variable to your image's name.
   IMAGE_NAME: keytrain
 
 jobs:
@@ -26,14 +25,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run tests
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.x'
+
+      - name: Test with pytest/pytest-cov
         run: |
-          if [ -f docker-compose.test.yml ]; then
-            docker-compose --file docker-compose.test.yml build
-            docker-compose --file docker-compose.test.yml run sut
-          else
-            docker build . --file Dockerfile
-          fi
+          pip install pytest
+          pip install pytest-cov
+          python -m pytest tests
+
+      - name: Test Docker Build
+        run: |
+          docker build . --file Dockerfile
 
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
