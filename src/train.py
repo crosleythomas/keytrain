@@ -3,6 +3,19 @@ import argparse
 import random
 
 
+def packs_to_paths(packs):
+    """
+    Converts packs described by name (i.e. "git") to the
+    path where the pack data lives.
+    """
+    pack_src = "packs"
+    PACK_PATHS = {
+        "git": "git.txt",
+        "kubectl": "kubectl.txt"
+    }
+    return ["/".join([pack_src, PACK_PATHS[p]]) for p in packs]
+
+
 def read_pack(pack):
     lines = [l.rstrip() for l in open(pack).readlines()]
     samples = []
@@ -45,14 +58,15 @@ def train_pack(packs):
     for sample in samples:
         train_sample(sample)
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('-p', '--packs', nargs='+')
+    parser.add_argument('-p', '--packs', nargs='+', required=True)
 
     args = parser.parse_args()
 
-    packs_paths = args.packs
+    packs_paths = packs_to_paths(args.packs)
 
-    train_pack(args.packs)
+    train_pack(packs_paths)
 
