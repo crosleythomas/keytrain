@@ -1,0 +1,16 @@
+apiVersion: beta1
+type: Pack
+metadata:
+    name: Github CLI Commands
+spec:
+    cards:
+    - name: Github Empty Commit
+      prompt: push an empty commit
+      response:
+            - git commit --allow-empty -m "message"
+    - name: Commit Local Changes
+      prompt: add all locally modified files to a remote branch?
+      response:
+        - git add .
+        - git commit -m "message"
+        - git push

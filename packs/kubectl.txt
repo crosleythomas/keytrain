@@ -1,9 +1,0 @@
-list all pods
-kubectl get pods
-
-start minikube
-minikube start
-
-stop minikube and remove all associated resources
-minikube delete
-

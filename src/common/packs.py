@@ -7,19 +7,19 @@ class Deck(object):
     def __init__(self, pack_names):
         self.packs = [Pack(n) for n in pack_names]
 
-    def __init__(self, packs):
-        self.packs = packs
+    @classmethod
+    def from_spec(cls, spec):
+        return cls()
 
 class Pack(object):
     """
     Represents a single flash card pack - a grouping of related Cards
     created by a user.
     """
-    def __init__(self, name):
-        pass
-
-    def __init__(self, cards):
-        self.cards = cards
+    def __init__(self, pack_data):
+        for k, v in pack_data.items():
+            setattr(self, k, v)
+        self.cards = [Card(c) for c in self.spec['cards']]
 
     def shuffle(self):
         random.shuffle(self.cards)
@@ -48,12 +48,15 @@ class Card(object):
         * Ability to store metadata about the card so we can add features in the future
             * ex - average difficulty, expected difficulty for current user, last guessed currectly
     """
-    def __init__(self, lines):
+    def __init__(self, spec):
         """
         Constructor to create a card based on a set of raw data "lines"
         :param lines:
         """
-        pass
+        for k, v in spec.items():
+            setattr(self, k, v)
+        print(dir(self))
+
 
 class Turn(object):
     """

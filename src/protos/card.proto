@@ -1,0 +1,8 @@
+message Card {
+    required string apiVersion = 1;
+    required string type = 2;
+
+    message metadata {
+        required string name = 1;
+    }
+}
