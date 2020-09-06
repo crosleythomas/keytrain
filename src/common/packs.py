@@ -1,6 +1,4 @@
 import random
-from IPython import embed
-
 
 class Deck(object):
     """
