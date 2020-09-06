@@ -1,29 +1,27 @@
-from common.packs import Deck
+from random import shuffle
 
 class Trainer(object):
 
-    def __init__(self, packs):
-        self.packs = packs
+    def __init__(self, cards):
+        self.cards = cards
+
+    def shuffle(self):
+        shuffle(self.cards)
 
     def train(self):
-        pass
+        for card in self.cards:
+            Trainer.train_card(card)
 
-    def train_sample(sample):
-        print(sample[0])
-        for solution in sample[1]:
-            ans = input('')
-            if not ans == solution:
-                print(u'\u274C')
-                for soln in sample[1]:
-                    print(soln)
-                print()
-                return
+    @staticmethod
+    def train_card(card):
+        for turn in card.turns:
+            print(turn.prompt.prompt)
+            for response in turn.responses:
+                ans = input('')
+                if not ans == response.response:
+                    print(u'\u274C')
+                    for response in turn.responses:
+                        print(response.response)
+                    print()
+                    return
         print(u'\u2705' + '\n')
-
-    def train_pack(packs):
-        samples = read_packs(packs)
-        random.shuffle(samples)
-
-        for sample in samples:
-            train_sample(sample)
-

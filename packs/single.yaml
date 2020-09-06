@@ -6,6 +6,8 @@ spec:
   name: A Sample prompt
   turns:
   - prompt: first prompt
-    response: first response
+    response:
+    - first response
   - prompt: second prompt
-    response: second response
+    response:
+    - second response

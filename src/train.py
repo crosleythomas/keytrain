@@ -27,7 +27,9 @@ if __name__ == "__main__":
     print("Training on %d cards." % len(cards))
     for card in cards:
         print(card.name)
-        
+
+    print("\n")
     trainer = Trainer(cards)
+    trainer.shuffle()
 
     trainer.train()
