@@ -1,10 +1,8 @@
 
 import argparse
 
-from common.packfile_parser import PackfileParser
-from common.trainer import Trainer
-
-from IPython import embed
+from src.common.packfile_parser import PackfileParser
+from src.common.trainer import Trainer
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

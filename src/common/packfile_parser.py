@@ -1,4 +1,4 @@
-from common.packs import Card, Pack
+from src.common.packs import Card, Pack
 
 import os
 import yaml
