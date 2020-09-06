@@ -3,16 +3,24 @@ type: Pack
 metadata:
   name: Kubectl CLI Commands
 spec:
-    cards:
-    - name: List Pods
-      prompt: list pods
-      response:
-        - kubectl get pods
-    - name: Start Minikube
-      prompt: start minikube
-      response:
-        - minikube start
-    - name: Delete Minikube
-      prompt: stop minikube and remove all associated resources
-      response:
-        - minikube delete
+  template:
+    metadata:
+      labels:
+        pack: kubectl
+    spec:
+      cards:
+      - name: List Pods
+        turns:
+        - prompt: list pods
+          response:
+          - kubectl get pods
+      - name: Start Minikube
+        turns:
+        - prompt: start minikube
+          response:
+          - minikube start
+      - name: Delete Minikube
+        turns:
+        - prompt: stop minikube and remove all associated resources
+          response:
+          - minikube delete

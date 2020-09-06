@@ -1,0 +1,11 @@
+apiVersion: beta1
+type: Card
+metadata:
+  name: Example Single Card
+spec:
+  name: A Sample prompt
+  turns:
+  - prompt: first prompt
+    response: first response
+  - prompt: second prompt
+    response: second response

@@ -1,4 +1,4 @@
-from src.common.packs import Deck
+from common.packs import Deck
 
 class Trainer(object):
 

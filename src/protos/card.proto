@@ -1,8 +1,29 @@
+syntax = "proto2";
+
+message Prompt {
+
+}
+
+message Response {
+
+}
+
 message Card {
     required string apiVersion = 1;
     required string type = 2;
 
     message metadata {
         required string name = 1;
+        required string prompt = 2;
+    }
+
+}
+
+message Pack {
+    required string apiVersion = 1;
+    required string type = 2;
+
+    message spec {
+        repeated Card cards = 1;
     }
 }
