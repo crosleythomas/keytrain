@@ -70,33 +70,45 @@ format makes it easy to define simple cards and is also extensible to add in
 metadata as the system grows to use features like labels, selectors, annotations, etc.
 
 ```
-apiVersion: beta1 # allow for format changing
+apiVersion: beta1
 type: Pack
 metadata:
     name: Github CLI Commands
 spec:
-    - card:
-        name: Github Empty Commit
-        prompt: push an empty commit
-        response:
-            - git commit --allow-empty -m "message"
-    - card:
-        name: Commit Local Changes
-        prompt: add all locally modified files to a remote branch?
-        response:
-            - git add .
-            - git commit -m "message"
-            - git push
+  template:
+    metadata:
+      labels:
+        pack: github
+    spec:
+      cards:
+      - name: Github Empty Commit
+        turns:
+        - prompt: push an empty commit
+          response:
+          - git commit --allow-empty -m "message"
+      - name: Commit Local Changes
+        turns:
+        - prompt: add all locally modified files to a remote branch?
+          response:
+          - git add .
+          - git commit -m "message"
+          - git push
+
 
 ---
 apiVersion: beta1
 type: Card
 metadata:
-    name: Github Empty Commit
+  name: Example Single Card
 spec:
-    prompt: push an empty commit
+  name: A Sample prompt
+  turns:
+  - prompt: first prompt
     response:
-        - git commit --allow-empty -m "message"
+    - first response
+  - prompt: second prompt
+    response:
+    - second response
 
 ```
 
