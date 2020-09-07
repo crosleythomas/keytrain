@@ -128,6 +128,13 @@ jobs:
       run: terraform plan -no-color
       continue-on-error: true
 
+    - name: Terraform Apply
+      if: ${{ github.event_name == "push" and github.ref == "refs/heads/master" }}
+      working-directory: ${{env.working-directory}}
+      id: apply
+      run: terraform plan -no-color
+
+
     - uses: actions/github-script@0.9.0
       if: github.event_name == 'pull_request'
       env:
