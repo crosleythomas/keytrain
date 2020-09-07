@@ -93,6 +93,8 @@ jobs:
           echo Pushed $IMAGE_ID:$VERSION
 
   terraform:
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
 
