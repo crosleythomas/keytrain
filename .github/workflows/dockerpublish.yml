@@ -129,7 +129,7 @@ jobs:
       continue-on-error: true
 
     - name: Terraform Apply
-      if: ${{ github.event_name == "push" and github.ref == "refs/heads/master" }}
+      if: ${{ github.event_name == 'push' and github.ref == 'refs/heads/master' }}
       working-directory: ${{env.working-directory}}
       id: apply
       run: terraform apply
