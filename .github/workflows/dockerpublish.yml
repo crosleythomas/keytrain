@@ -132,7 +132,7 @@ jobs:
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
       working-directory: ${{env.working-directory}}
       id: apply
-      run: terraform apply
+      run: terraform apply -auto-approve
 
 
     - uses: actions/github-script@0.9.0
