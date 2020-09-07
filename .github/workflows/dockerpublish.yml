@@ -1,4 +1,4 @@
-name: Test, Build, Publish
+name: Test, Build, Publish, Terraform
 
 on:
   push:
