@@ -9,11 +9,44 @@ spec:
         pack: kubectl
     spec:
       cards:
+      # Viewing and Examining Resources
       - name: List Pods
         turns:
         - prompt: list pods
           response:
           - kubectl get pods
+      - name: List Pods with their labels
+        turns:
+        - prompt: list pods with their labels
+          response:
+          - kubectl get pods --show-labels
+      - name: Pod YAML
+        turns:
+        - prompt: show the yaml for a pod in the current namespace named sample
+          response:
+          - kubectl get pod sample -o yaml
+      - name: Describe Pod
+        turns:
+        - prompt: show verbose information about a pod named busybox
+          response:
+          - kubectl describe pod busybox
+      # Using labels and selectors
+      - name: Add Label to Pod
+        turns:
+          - prompt: Add the label app=keytrain to a pod named sample
+            response:
+            - kubectl label pod sample app=keytrain
+      - name: List with label selector
+        turns:
+          - prompt: list all pods with the label app=test
+            response:
+            - kubectl get pods -l app=test
+      - name: Get Pods + Label Negation
+        turns:
+          - prompt: list all pods without the label app=test
+            response:
+              - kubectl get pods -l app!=test
+      # Controlling Minikube
       - name: Start Minikube
         turns:
         - prompt: start minikube
@@ -24,3 +57,62 @@ spec:
         - prompt: stop minikube and remove all associated resources
           response:
           - minikube delete
+      - name: Minikube Dashboard
+        turns:
+        - prompt: run the dashboard through minikube
+          response:
+          - minikube dashboard
+      # Context and Configuration
+      - name: Switch Namespace
+        turns:
+          - prompt: switch to namespace "ocean"
+            response:
+            - kubectl config set-context --current --namespace ocean
+      - name: List Contexts
+        turns:
+          - prompt: list all contexts
+            response:
+            - kubectl config get-contexts
+      - name: Get the current context
+        turns:
+          - prompt: get current context
+            response:
+            - kubectl config current-context
+      # Creating Objects
+      - name: Apply Manifest
+        turns:
+          - prompt: create resource from local file at path "./manifest.yaml"
+            response:
+            - kubectl apply -f ./manifest.yaml
+      - name: Create Deployment of nginx
+        turns:
+          - prompt: create a deployment named sample with a single pod running the image nginx
+            response:
+            - kubectl create deployment sample --image nginx
+      - name: Create Pod of nginx
+        turns:
+          - prompt: create a pod named sample running the nginx image
+            response:
+            - kubectl run sample --image nginx
+      - name: Generate YAML for Deployment
+        turns:
+          - prompt: genereate yaml for new deployment named sample with image nginx
+            response:
+            -  kubectl create deployment sample --image nginx --dry-run -o yaml
+      - name: Run and Exec Busybox
+        turns:
+          - prompt: run a terminal inside of a new pod named sample with a busybox image and make it destroy itself after
+            response:
+            - kubectl run --rm -i --tty sample --image busybox -- sh
+      - name: Exec Running Pod
+        turns:
+          - prompt: exec into a shell in a busybox image in a pod named sample
+            response:
+            - kubectl exec -it --tty sample -- sh
+      # Editing Objects
+      # Documentation
+      - name: Show API Info
+        turns:
+          - prompt: show api information for a deployment's spec sub-fields
+            response:
+            - kubectl explain deployment.spec

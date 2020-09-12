@@ -8,16 +8,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     # TODO: validate these
-    parser.add_argument('-c', '--cards', nargs='+', required=True, )
-    parser.add_argument('-p', '--packs', nargs='+', required=True, choices=list(PackfileParser.pack_map.keys()))
+    parser.add_argument('-c', '--cards', nargs='+')
+    parser.add_argument('-p', '--packs', nargs='+', choices=list(PackfileParser.pack_map.keys()))
 
     # TOOD: Configure session. Can be either completely local or integrated with remote for pulling packs
     #   and reporting telemetry.
 
     args = parser.parse_args()
 
-    cards = PackfileParser.load_cards(args.cards)
-    packs = PackfileParser.load_packs(args.packs)
+    cards = PackfileParser.load_cards(args.cards) if args.cards else []
+    packs = PackfileParser.load_packs(args.packs) if args.packs else []
 
     for pack in packs:
         cards.extend(pack.cards)

@@ -120,3 +120,8 @@ for the full deck (global CLI arg) and with per Pack option (CLI option to each 
 * Create IntelliJ plugin to easily create cards/packs
 * Add labels and selectors to gather certain cards
 * Add annotations on cards for things like `lastTimeCorrect`, `lastTimeIncorrect`, `probabilityCorrect`
+* Auto-import content from "cheat-sheet" style data banks, i.e. https://devhints.io/bash
+* Define markup language for responses (regex-ish?) to allow for varying, correct answers
+    * Define escape characters
+* Add ability to say assumptions for a Pack/Card
+    * i.e. "(kubectl pack) Assume namespace is default unless otherwise specified."
